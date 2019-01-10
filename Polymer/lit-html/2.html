@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Polymer/lit-html</title>
+</head>
+<body>
+  <div>
+    <button id="Add">Add iframe</button>
+    <button id="Delete_First">Delete first iframe</button>
+
+    <div id="iframe-wrap">
+
+    </div>
+  </div>
+  
+  <script type="module">
+    import { html, render, TemplateResult } from 'https://cdn.jsdelivr.net/npm/lit-html/lit-html.js';
+
+
+    let index = 0;
+    const iframes = [];
+
+    function renderIframe(){
+      render(
+        html`${
+          iframes.map( src => {
+            return html`<iframe src="${ src }"></iframe>`
+          })
+        }`,
+        document.getElementById('iframe-wrap')
+      );
+    }
+
+    document.getElementById('Add').onclick = function(){
+      iframes.push(`https://www.google.com/search?q=${ index++ }`);
+      // iframes.push(`https://www.baidu.com/s?&wd=${ index++ }`);
+      renderIframe();
+    }
+
+    document.getElementById('Delete_First').onclick = function(){
+      iframes.splice( 0, 1 );
+      renderIframe();
+    }
+  </script>
+</body>
+</html>
