@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Polymer/lit-html</title>
+</head>
+<body>
+  <div id="app"></div>
+  
+  <script type="module">
+    import { render, html } from 'https://cdn.jsdelivr.net/npm/lit-html@1.1.0/lit-html.js';
+
+    const app = document.getElementById('app');
+
+    render(
+      html`<!--${ 123 }-->`,
+      app
+    );
+
+    console.log( app.textContent );// -> 123
+  </script>
+</body>
+</html>
